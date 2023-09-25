@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: rgb(30, 30, 30);
+}
+#app {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
+  margin: 0 auto;
+  padding: 0rem;
+  color: rgb(220, 219, 219);
+  font-weight: normal;
+}
+button:hover {
+  background-color: rgb(136 19 55);
+}
+/* 
+@media (min-width: 1024px) {
+  #app {
+    font-size: 2rem;
+  }
+  .textLarge {
+    font-size: 2.5rem;
+  }
+  .textMedium {
+    font-size: 1.5rem;
+  }
+  .textSmall {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  #app {
+    font-size: 1rem;
+  }
+  .textLarge {
+    font-size: 1.5rem;
+  }
+  .textMedium {
+    font-size: 1rem;
+  }
+  .textSmall {
+    font-size: .5rem;
+  }
+} */
