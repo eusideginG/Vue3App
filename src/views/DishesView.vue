@@ -44,9 +44,6 @@ const filteredDishes = () => {
       }
     
       filtered.push(...cleanDishes, ...cleanAllergens, ...cleanRowTag)
-      // filtered.push(dishes.map((dietP) => dietP));
-      // filtered.push(...dishes.map((dietP) => dietP));
-      // cleanDishes =cleanDishes.map((rowTag) => rowTag)
       }
       filtered = [...new Set(filtered.map((item) => item))]
       return filtered
