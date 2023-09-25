@@ -7,6 +7,9 @@
 npm install (install necessary packages)  
 npm run dev (compile for development)
 
+## important  
+Do not forget to add "/dishes" to your url to display the dishes
+
 ### Routing
 You can edit the routes from "src/router/index.js" and change the **"path"** values as needed.
 
