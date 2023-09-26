@@ -49,38 +49,6 @@ const filteredDishes = () => {
 
     }
 
-    //   filter = filter.toLowerCase().replace(" ", "-");
-    // // check Dietary Preferences and Allergens filter
-    //   // clear and return filtered dishes (dietaryPreferences)
-    //   let cleanDishes = dishes.filter((dietTag) => dietTag.tags.dietaryPreferences !== undefined && dietTag.tags.dietaryPreferences.length > 0);
-    //   cleanDishes = cleanDishes.filter((cleanD) => filter !== "vegan" ? cleanD.tags.dietaryPreferences.includes(filter) : (cleanD.tags.dietaryPreferences.includes("vegetarian") || cleanD.tags.dietaryPreferences.includes("vegan")))
-
-    //   // clear and return filtered dishes (allergens)
-    //   let cleanAllergens = dishes.filter((allTag) => allTag.tags.allergens !== undefined && allTag.tags.allergens.length > 0);
-    //   cleanAllergens = cleanAllergens.filter((cleanA) => cleanA.tags.allergens.includes(filter))
-
-    //   // clear and return filtered dishes (tags)
-    //   let cleanRowTag = dishes.filter((rowTag) => rowTag.tags !== undefined && rowTag.tags.length > 0);
-    //   cleanRowTag = cleanRowTag.filter((cleanR) => cleanR.tags.includes(filter))
-
-    // // check price filter
-    //   // aply price filters
-    //   let clearPrice = filter.match(/\d+/g)
-    //   if (clearPrice != null) {
-    //     if(clearPrice.length === 1) {
-    //     if(clearPrice[0] == 10) {
-    //       clearPrice = dishes.filter(item => item.price < clearPrice[0])
-    //     } else {
-    //       clearPrice = dishes.filter(item => item.price > clearPrice[0])
-    //     }
-    //     } else if(clearPrice.length === 2) {
-    //       clearPrice = dishes.filter(item => item.price >= clearPrice[0] && item.price < clearPrice[1])
-    //     }
-    //     filtered.push(...clearPrice)
-    //   }
-    
-    //   filtered.push(...cleanDishes, ...cleanAllergens, ...cleanRowTag)
-    //   }
     return filtered
   }
 }
