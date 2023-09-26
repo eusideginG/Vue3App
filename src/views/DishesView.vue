@@ -11,43 +11,87 @@ const dishes = data.dishes; // all dishes
 const filteredDishes = () => {
   if(!filterStore.filterListState.length > 0) { return dishes; }
   else {
+    // copy the object value
     let filtered = [];
-    for (let filter of filterStore.filterListState) {
-      filter = filter.toLowerCase().replace(" ", "-");
-    // check Dietary Preferences and Allergens filter
-      // clear and return filtered dishes (dietaryPreferences)
-      let cleanDishes = dishes.filter((dietTag) => dietTag.tags.dietaryPreferences !== undefined && dietTag.tags.dietaryPreferences.length > 0);
-      cleanDishes = cleanDishes.filter((cleanD) => filter !== "vegan" ? cleanD.tags.dietaryPreferences.includes(filter) : (cleanD.tags.dietaryPreferences.includes("vegetarian") || cleanD.tags.dietaryPreferences.includes("vegan")))
+    filtered = dishes.slice()
 
-      // clear and return filtered dishes (allergens)
-      let cleanAllergens = dishes.filter((allTag) => allTag.tags.allergens !== undefined && allTag.tags.allergens.length > 0);
-      cleanAllergens = cleanAllergens.filter((cleanA) => cleanA.tags.allergens.includes(filter))
+    let filters = filterStore.filterListState.map(item => item.toLowerCase().replace(" ", "-")) // format applied filters
+    filters = filters.filter(item => !/\d/.test(item)) // remove price filter
 
-      // clear and return filtered dishes (tags)
-      let cleanRowTag = dishes.filter((rowTag) => rowTag.tags !== undefined && rowTag.tags.length > 0);
-      cleanRowTag = cleanRowTag.filter((cleanR) => cleanR.tags.includes(filter))
+    let priceFilter = filterStore.filterListState.map(item => item.toLowerCase().replace(" ", "-")) // format applied filters
+    priceFilter = priceFilter.filter(item => /\d/.test(item)) // add only price filter
+    priceFilter = priceFilter.map(item => item.split(","))
 
-    // check price filter
-      // aply price filters
-      let clearPrice = filter.match(/\d+/g)
-      if (clearPrice != null) {
-        if(clearPrice.length === 1) {
-        if(clearPrice[0] == 10) {
-          clearPrice = dishes.filter(item => item.price < clearPrice[0])
-        } else {
-          clearPrice = dishes.filter(item => item.price > clearPrice[0])
-        }
-        } else if(clearPrice.length === 2) {
-          clearPrice = dishes.filter(item => item.price >= clearPrice[0] && item.price < clearPrice[1])
-        }
-        filtered.push(...clearPrice)
+    // make filter tags the same format
+    for (let i = 0; i < filtered.length; i++) {
+      let dishFilters = []
+      if(dishes[i].tags.dietaryPreferences !== undefined ) {
+        if(dishes[i].tags.dietaryPreferences.length > 0) { dishFilters.push(...dishes[i].tags.dietaryPreferences) }
       }
-    
-      filtered.push(...cleanDishes, ...cleanAllergens, ...cleanRowTag)
+      if(dishes[i].tags.allergens !== undefined) {
+        if(dishes[i].tags.allergens.length > 0) { dishFilters.push(...dishes[i].tags.allergens) }
       }
-      filtered = [...new Set(filtered.map((item) => item))]
-      return filtered
+      if(Array.isArray(dishes[i].tags)) {
+        if(dishes[i].tags.length > 0) { dishFilters.push(...dishes[i].tags) }
+      }
+      
+      filtered[i].tags = dishFilters
     }
+
+    // removes items based on filters
+    for (let i = filtered.length - 1; i >= 0; i--) {
+      if(removeItem(filters, filtered[i].tags)) {
+        filtered.splice(i, 1)
+      }
+    }
+    if(priceFilter.length > 0) {
+          filtered = filtered.filter(item => priceFilter[0] == 10 ? item.price < 10 : priceFilter[0] == 40 ? item.price > 40 : item.price >= priceFilter[0][0] && item.price < priceFilter[0][1])
+
+    }
+
+    //   filter = filter.toLowerCase().replace(" ", "-");
+    // // check Dietary Preferences and Allergens filter
+    //   // clear and return filtered dishes (dietaryPreferences)
+    //   let cleanDishes = dishes.filter((dietTag) => dietTag.tags.dietaryPreferences !== undefined && dietTag.tags.dietaryPreferences.length > 0);
+    //   cleanDishes = cleanDishes.filter((cleanD) => filter !== "vegan" ? cleanD.tags.dietaryPreferences.includes(filter) : (cleanD.tags.dietaryPreferences.includes("vegetarian") || cleanD.tags.dietaryPreferences.includes("vegan")))
+
+    //   // clear and return filtered dishes (allergens)
+    //   let cleanAllergens = dishes.filter((allTag) => allTag.tags.allergens !== undefined && allTag.tags.allergens.length > 0);
+    //   cleanAllergens = cleanAllergens.filter((cleanA) => cleanA.tags.allergens.includes(filter))
+
+    //   // clear and return filtered dishes (tags)
+    //   let cleanRowTag = dishes.filter((rowTag) => rowTag.tags !== undefined && rowTag.tags.length > 0);
+    //   cleanRowTag = cleanRowTag.filter((cleanR) => cleanR.tags.includes(filter))
+
+    // // check price filter
+    //   // aply price filters
+    //   let clearPrice = filter.match(/\d+/g)
+    //   if (clearPrice != null) {
+    //     if(clearPrice.length === 1) {
+    //     if(clearPrice[0] == 10) {
+    //       clearPrice = dishes.filter(item => item.price < clearPrice[0])
+    //     } else {
+    //       clearPrice = dishes.filter(item => item.price > clearPrice[0])
+    //     }
+    //     } else if(clearPrice.length === 2) {
+    //       clearPrice = dishes.filter(item => item.price >= clearPrice[0] && item.price < clearPrice[1])
+    //     }
+    //     filtered.push(...clearPrice)
+    //   }
+    
+    //   filtered.push(...cleanDishes, ...cleanAllergens, ...cleanRowTag)
+    //   }
+    return filtered
+  }
+}
+
+// checks if each filter is on dish tag
+const removeItem = (arr1, arr2) => {
+  if(arr1.length > arr2.length) { return true }
+  for(let i in arr1) {
+    if(!arr2.includes(arr1[i])) { return true}
+  }
+  return false
 }
 
 const dietFilters = ref([
