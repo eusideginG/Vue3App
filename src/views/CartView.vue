@@ -3,6 +3,7 @@ import CartItem from '../components/cartItem.vue'
 import { useCartStore } from '@/stores/appState.js'
 import { useToast } from "vue-toastification";
 import { RouterLink } from 'vue-router'
+import { ref } from 'vue'
 
 const toast = useToast();
 
@@ -29,6 +30,8 @@ const submitOrder = () => {
 });
 }
 
+let isBtnActive = ref(!Object.values(cartStore.cart).length > 0);
+
 </script>
 
 <template>
@@ -36,7 +39,7 @@ const submitOrder = () => {
       <h1 class="cartTitle">Cart</h1>
       <CartItem v-for="cartItem of cartStore.cart" v-bind:key="cartItem.id" :id="cartItem.id" :dishName="cartItem.name" :quan="cartItem.quan" :price="cartItem.price" />
       <span class="self-end">{{ cartStore.getGrandTotal() }}€</span>
-      <router-link :to="{name: 'review'}" class="self-end"><button class="orderBtn bg-rose-950 rounded-lg px-2 my-2 border" @click="submitOrder">Place Order</button></router-link>
+      <router-link :to="{name: 'review'}" class="self-end" :class="{active: isBtnActive}"><button  class="orderBtn bg-rose-950 rounded-lg px-2 my-2 border" @click="submitOrder" :disabled="isBtnActive.value">Place Order</button></router-link>
     </div>
 </template>
   
@@ -46,6 +49,9 @@ const submitOrder = () => {
   }
   .orderBtn {
     width: 20vw;
+  }
+  .active {
+    pointer-events: none;
   }
 </style>
   
