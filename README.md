@@ -11,7 +11,7 @@ npm run dev (compile for development)
 Do not forget to add **"/dishes"** to your url to display the dishes
 
 ## In detail
-This is a restaurant application that allows customers to view the menu and place orders. Customers can see all the dishes offered by the restaurant and filter them based on preferences like allergies, dietary choices, and price. The filters will display all available options for each selected filter. Customers can also add desired dishes to their cart and proceed with the order, leaving any additional comments they may have for consideration.  
+This is a restaurant application that allows customers to view the menu and place orders. Customers can see all the dishes offered by the restaurant and filter them based on preferences like allergies, dietary choices, and price. Customers can also add desired dishes to their cart and proceed with the order, leaving any additional comments they may have for consideration.  
   
 To display a dish: click on the **question mark (!)** button, at the top right of the card of your desired dish.  
 To change the quantity of your dish: change the number input (below and left of the dish description).  
@@ -23,7 +23,7 @@ To display your cart: click the **cart** button at the top right of your screen.
 To remove a dish while you are in the cart tab: simple click the **remove** button. 
 To buy your cart items: while in your cart tab, click the **confirm order** button.  
 To leave a review: after every **confirm order** click you will be prompt to a review page, add your review in the text area and press the **submit** button.  
-To filter: press the **filter** button (a filter menu will open), select your desired filter (the filters will apply automatically and cumulatively).  
+To filter: press the **filter** button (a filter menu will open), select your desired filter (the filters will apply automatically).  
 to close the filter menu: click on the **left arrow** button at the top left of the filter menu or click the **filter** button again.
 
 
