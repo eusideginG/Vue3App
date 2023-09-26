@@ -36,7 +36,7 @@ const submitOrder = () => {
       <h1 class="cartTitle">Cart</h1>
       <CartItem v-for="cartItem of cartStore.cart" v-bind:key="cartItem.id" :id="cartItem.id" :dishName="cartItem.name" :quan="cartItem.quan" :price="cartItem.price" />
       <span class="self-end">{{ cartStore.getGrandTotal() }}€</span>
-      <router-link :to="{name: 'review'}"><button class="orderBtn bg-rose-950 rounded-lg px-2 my-2 border self-end" @click="submitOrder">Place Order</button></router-link>
+      <router-link :to="{name: 'review'}" class="self-end"><button class="orderBtn bg-rose-950 rounded-lg px-2 my-2 border" @click="submitOrder">Place Order</button></router-link>
     </div>
 </template>
   
