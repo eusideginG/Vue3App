@@ -7,9 +7,6 @@
 npm install (install necessary packages)  
 npm run dev (compile for development)
 
-## important  
-Do not forget to add **"/dishes"** to your url to display the dishes
-
 ## In detail
 This is a restaurant application that allows customers to view the menu and place orders. Customers can see all the dishes offered by the restaurant and filter them based on preferences like allergies, dietary choices, and price. Customers can also add desired dishes to their cart and proceed with the order, leaving any additional comments they may have for consideration.  
   
