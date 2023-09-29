@@ -134,7 +134,7 @@ const toggleFilterPrice = (filterName) => {
       <span class="text-rose-950 text-3xl font-black self-center">MENU</span>
     </div>
   </header>
-    <div class="filterWrapper sticky top-10 flex-col rounded-b-md border-b" :class="{toggleFilterVisibility: isFilterOpen}">
+    <div class="filterWrapper sticky top-10 flex-col rounded-b-md border-b z-50" :class="{toggleFilterVisibility: isFilterOpen}">
       <div class="closeFilterBtnWrapper"><button class="closeFilterBtn font-black ml-2 mt-5 text-rose-950 rounded-full text-center flex items-center justify-center" @click="openFilter">◂</button></div>
       <div class="filters text-center flex flex-wrap justify-around">
         <div class="dietFilter">
